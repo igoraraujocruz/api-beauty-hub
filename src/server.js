@@ -1,12 +1,17 @@
 import 'dotenv/config';
+import http from 'http';
 import express from 'express';
 import routes from './routes.js'
 import './connection.js'
 
 const app = express();
 
+const server = http.createServer(app);
+
+const port = process.env.PORT || 3000;
+
 app.use(express.json());
 
 app.use(routes);
 
-app.listen(3333, () => console.log("Server running"))
+server.listen(port, () => console.log(`Servidor Iniciado na porta ${port}`));
