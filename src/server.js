@@ -3,6 +3,7 @@ import http from 'http';
 import express from 'express';
 import routes from './routes.js'
 import './connection.js'
+import cors from 'cors';
 
 const app = express();
 
