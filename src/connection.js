@@ -3,10 +3,10 @@ import { createPool } from 'mysql2/promise';
 console.log("passou no db")
 
 export const connection = createPool({
-  host: 'localhost',
+  host: 'containers-us-west-32.railway.app',
   user: 'root',
-  password: '123456',
-  database: 'beautydb',
+  password: 'xnNLwGVUn263IKAkKvNm',
+  database: 'railway',
   port: 3306,
   waitForConnections: true,
 });
