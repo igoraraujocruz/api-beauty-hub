@@ -7,6 +7,6 @@ export const connection = createPool({
   user: 'root',
   password: 'xnNLwGVUn263IKAkKvNm',
   database: 'railway',
-  port: 3306,
+  port: 8025,
   waitForConnections: true,
 });
