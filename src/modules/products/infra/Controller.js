@@ -12,9 +12,9 @@ export class Controller {
     }
 
     async create(request, response) {
-        const { pname, descr, category_id, dt_validade } = request.body;
+        const { pname, descr, category_id, quanitidade, dt_validade } = request.body;
         try {
-            await connection.query(`INSERT INTO products (pname, descr, category_id, dt_validade) VALUES ("${pname}", "${descr}", "${category_id}", "${dt_validade}");`);
+            await connection.query(`INSERT INTO products (pname, descr, category_id, dt_validade) VALUES ("${pname}", "${descr}", "${category_id}", "${quanitidade}", "${dt_validade}");`);
             return response.status(201).json({ message: 'Criado com sucesso.' });
 
             } catch (error) {
