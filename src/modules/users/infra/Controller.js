@@ -26,9 +26,9 @@ export class Controller {
     }
 
     async auth(request, response) {
-        const { email, passwrd } = request.body;
-        const [rows, fields] = await connection.query(`SELECT * FROM users WHERE email LIKE "${email}" && passwrd LIKE "${passwrd}";`);
-
+        const { email, pass } = request.body;
+        const [rows, fields] = await connection.query(`SELECT * FROM users WHERE email LIKE "${email}" && pass LIKE "${pass}";`);
+        
         if(rows == undefined){
             return response.status(404).json({
                 message: 'Usuário não encontrado'
@@ -38,7 +38,7 @@ export class Controller {
         return response.status(201).json({ 
             id: rows[0].id,
             email: rows[0].email,
-            token: jwt.sign({ token: user.id}, authConfig.secret, {
+            token: jwt.sign({ token: rows[0].id}, authConfig.secret, {
                 expiresIn: authConfig.expiresIn,
             })
         }); 
