@@ -38,7 +38,7 @@ export class Controller {
         return response.status(201).json({ 
             id: rows[0].id,
             email: rows[0].email,
-            token: jwt.sign({ token: user[0][0].id}, authConfig.secret, {
+            token: jwt.sign({ token: user[0].id}, authConfig.secret, {
                 expiresIn: authConfig.expiresIn,
             })
         }); 
