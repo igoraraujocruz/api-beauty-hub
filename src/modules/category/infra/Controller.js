@@ -3,8 +3,8 @@ import { connection } from '../../../connection.js'
 export class Controller {
     async get(request, response) {
         try {
-            const category = await connection.query('SELECT * FROM category');
-            return response.json(category[0]);
+            const [rows, fields] = await connection.query('SELECT * FROM category');
+            return response.json(rows);
             } catch (error) {
                 console.error(error);
                 return response.status(500).json({ message: 'Erro ao obter as categorias.' });
@@ -14,7 +14,7 @@ export class Controller {
     async create(request, response) {
         const { cname } = request.body;
         try {
-            const pool = await connection.query(`INSERT INTO category (cname) VALUES ("${cname}");`);
+            await connection.query(`INSERT INTO category (cname) VALUES ("${cname}");`);
             return response.status(201).json({ message: 'Criado com sucesso.' });
 
             } catch (error) {
@@ -28,7 +28,7 @@ export class Controller {
         const { cname } = request.body;
 
         try {
-            const pool = await connection.query(`UPDATE category SET cname="${cname }" WHERE id=${id};`);
+            await connection.query(`UPDATE category SET cname="${cname }" WHERE id=${id};`);
             return response.status(201).json({ message: 'Editato com sucesso.' });
             } catch (error) {
                 console.error(error);
@@ -40,7 +40,7 @@ export class Controller {
         const { id } = request.params;
 
         try {
-            const pool = await connection.query(`DELETE FROM category WHERE id =${id} `);
+            await connection.query(`DELETE FROM category WHERE id =${id} `);
             return response.status(201).json({ message: 'Deletado com sucesso.' });
             } catch (error) {
                 console.error(error);
